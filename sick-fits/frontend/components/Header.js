@@ -35,14 +35,14 @@ const HeaderStyles = styled.header`
 
 export default function Header() {
   return (
-    <header>
-      <div className="bar">
+    <HeaderStyles>
+      <Logo className="bar">
         <Link href="/">Sick fits</Link>
-      </div>
+      </Logo>
       <div className="sub-bar">
         <p>Search</p>
       </div>
       <Nav />
-    </header>
+    </HeaderStyles>
   );
 }
