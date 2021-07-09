@@ -34,7 +34,7 @@ export default function useForm(initial = {}) {
   return {
     inputs,
     handleChange,
-    resetForm,
     clearForm,
+    resetForm,
   };
 }

@@ -32,7 +32,7 @@ const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function CreateProduct() {
-  const { inputs, handleChange, resetForm, clearForm } = useForm({
+  const { inputs, handleChange, clearForm, resetForm } = useForm({
     image: '',
     name: 'Nice Shoes',
     price: 34123,
@@ -50,7 +50,6 @@ export default function CreateProduct() {
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        console.log(inputs);
         // Submit the input fields to the backend
         const res = await createProduct();
         clearForm();
