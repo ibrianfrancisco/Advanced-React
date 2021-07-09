@@ -82,7 +82,7 @@ export default function UpdateProduct({ id }) {
             id="name"
             name="name"
             placeholder="Name"
-            value={inputs.name}
+            value={inputs.name || ''}
             onChange={handleChange}
           />
         </label>
@@ -93,7 +93,7 @@ export default function UpdateProduct({ id }) {
             id="price"
             name="price"
             placeholder="price"
-            value={inputs.price}
+            value={inputs.price || ''}
             onChange={handleChange}
           />
         </label>
@@ -103,7 +103,7 @@ export default function UpdateProduct({ id }) {
             id="description"
             name="description"
             placeholder="Description"
-            value={inputs.description}
+            value={inputs.description || ''}
             onChange={handleChange}
           />
         </label>
