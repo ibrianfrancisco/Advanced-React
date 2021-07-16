@@ -14,7 +14,7 @@ const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
 
 const sessionConfig = {
-  max: 60 * 60 * 24 * 360, // How long they stay signed in?
+  maxAge: 60 * 60 * 24 * 360, // How long they stay signed in?
   secret: process.env.COOKIE_SECRET,
 };
 
@@ -24,7 +24,12 @@ const { withAuth } = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
-    // TODO: Add in initial roles
+    // TODO: Add in inital roles here
+  },
+  passwordResetLink: {
+    async sendToken(args) {
+      console.log(args);
+    },
   },
 });
 
@@ -41,11 +46,11 @@ export default withAuth(
       adapter: 'mongoose',
       url: databaseURL,
       async onConnect(keystone) {
-        console.log('Connected to the database');
+        console.log('Connected to the database!');
         if (process.argv.includes('--seed-data')) {
           await insertSeedData(keystone);
         }
-      }
+      },
     },
     lists: createSchema({
       // Schema items go in here
@@ -54,14 +59,14 @@ export default withAuth(
       ProductImage,
     }),
     ui: {
-      // Show the UI only for people who pass this test
+      // Show the UI only for poeple who pass this test
       isAccessAllowed: ({ session }) =>
         // console.log(session);
         !!session?.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
       // GraphQL Query
-      User: 'id',
+      User: 'id name email',
     }),
   })
 );
