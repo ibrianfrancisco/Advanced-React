@@ -3,6 +3,7 @@ import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_PRODUCTS_QUERY = gql`
@@ -86,7 +87,7 @@ export default function Search() {
                 alt={item.name}
                 width="50"
               />
-              {item.name}
+              <Link href={`/product/${item.id}`}>{item.name}</Link>
             </DropDownItem>
           ))}
         {isOpen && !items.length && !loading && (
