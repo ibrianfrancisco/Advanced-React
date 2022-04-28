@@ -54,7 +54,7 @@ export default function SingleOrderPage({ query }) {
         <span>{formatMoney(order.total)}</span>
       </p>
       <p>
-        <span>ItemCount:</span>
+        <span>Item Count:</span>
         <span>{order.items.length}</span>
       </p>
       <div className="items">
